@@ -1,8 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Box } from "@mui/system";
 import ReviewDetail from "src/components/review/ReviewDetail";
-
+import { BasicBox } from "~/styles/Boxes";
 
 const ReviewPage = () => {
   const router = useRouter();
@@ -10,15 +9,9 @@ const ReviewPage = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          margin: "0 auto",
-          maxWidth: "md",
-        }}
-      >
-
+      <BasicBox>
         <ReviewDetail id={id} />
-      </Box>
+      </BasicBox>
     </>
   );
 };

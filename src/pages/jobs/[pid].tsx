@@ -1,25 +1,17 @@
 import React from "react";
-import { useRouter } from "next/router"; // 라우팅해주는 애
-import { styled } from "@mui/system"; // 전체 container 스타일링
+import { useRouter } from "next/router";
+
 import { NextPage } from "next";
-import { Card, Button, Container } from "@mui/material";
+import { Card, Button } from "@mui/material";
 import dynamic from "next/dynamic";
 import JobContents from "~/components/job/JobContents";
 import useJobDetailEffect from "~/hooks/job/useJobDetailEffect";
+import { BasicBox } from "~/styles/Boxes";
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import("../../components/review/ReviewCarousel"),
   { ssr: false }
 );
-
-const ContainerBox = styled(Container)({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  textAlign: "center",
-  padding: 20,
-});
 
 const Detail: NextPage = () => {
   const router = useRouter();
@@ -27,7 +19,7 @@ const Detail: NextPage = () => {
   const { job } = useJobDetailEffect();
 
   return (
-    <ContainerBox>
+    <BasicBox>
       <Card sx={{ p: 4 }}>
         <JobContents job={job} />
         <br />
@@ -42,7 +34,7 @@ const Detail: NextPage = () => {
           지원하기
         </Button>
       </Card>
-    </ContainerBox>
+    </BasicBox>
   );
 };
 

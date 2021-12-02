@@ -26,12 +26,15 @@ import {
   usePatchUserMeMutation,
   usePostUploadMutation,
 } from "~/redux/services/api";
+import { selectAuth } from "~/redux/slices/auth-slice";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { BasicBox } from "~/styles/Boxes";
 
-export interface MyInfoPageProps {
-  user: User;
-}
-
-const MyInfoPage: NextPage<MyInfoPageProps> = ({ user }) => {
+const MyInfoPage: NextPage = () => {
+  const auth = useSelector(selectAuth);
+  const user = auth.user!;
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const [isModal, toggleModal] = useToggle();
   const { handleSubmit, control, setValue, register } = useEditProfileForm({
@@ -53,6 +56,7 @@ const MyInfoPage: NextPage<MyInfoPageProps> = ({ user }) => {
   const [postUploadMutatuin] = usePostUploadMutation();
 
   const onSubmit = handleSubmit(async (data) => {
+    router.push("/");
     if (isLoading) {
       return;
     }
@@ -86,20 +90,7 @@ const MyInfoPage: NextPage<MyInfoPageProps> = ({ user }) => {
 
   return (
     <>
-      <Paper
-        sx={{
-          margin: "auto",
-          paddingX: {
-            xs: 2,
-            sm: 4,
-          },
-          paddingY: {
-            xs: 3,
-            sm: 6,
-          },
-          maxWidth: "sm",
-        }}
-      >
+      <BasicBox>
         <Stack spacing={2}>
           <Typography variant="h5" align="center">
             내 정보
@@ -324,7 +315,7 @@ const MyInfoPage: NextPage<MyInfoPageProps> = ({ user }) => {
             </Box>
           </Stack>
         </Stack>
-      </Paper>
+      </BasicBox>
       <Modal open={isModal} onClose={toggleModal}>
         <Box
           sx={{
@@ -349,24 +340,5 @@ const MyInfoPage: NextPage<MyInfoPageProps> = ({ user }) => {
     </>
   );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    const { user } = store.getState().auth;
-
-    if (!user) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/auth/signin",
-        },
-      };
-    }
-
-    return {
-      props: { user },
-    };
-  }
-);
 
 export default MyInfoPage;

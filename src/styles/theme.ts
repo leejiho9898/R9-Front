@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material";
 import { koKR } from "@mui/material/locale";
-import { grey, green, lime } from "@mui/material/colors";
+import { grey, blue, indigo, lightBlue } from "@mui/material/colors";
 
 export const theme = createTheme(
   {
@@ -29,6 +29,9 @@ export const theme = createTheme(
       h4: {
         fontWeight: "bold",
       },
+      subtitle1: {
+        fontWeight: "bold",
+      },
       subtitle2: {
         fontWeight: "bold",
       },
@@ -36,17 +39,17 @@ export const theme = createTheme(
     palette: {
       primary: {
         // 메인컬러 test중
-        main: green[400],
-        dark: green[600],
-        contrastText: grey[50],
+        main: indigo[500],
+        dark: blue[600],
+        contrastText: grey[100],
         // main: lightGreen[400],
         // dark: green[400],
         // contrastText: grey[100],
       },
       secondary: {
-        main: lime[300],
-        dark: lime[500],
-        contrastText: grey[900],
+        main: blue[600],
+        dark: lightBlue[600],
+        contrastText: grey[100],
       },
     },
   },

@@ -1,8 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
+import { BasicBox } from "~/styles/Boxes";
 
 const MyFavoritePage: NextPage = () => {
-  return <div>관심목록</div>;
+  return <BasicBox>관심목록</BasicBox>;
 };
 
 export default MyFavoritePage;

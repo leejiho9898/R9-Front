@@ -2,23 +2,18 @@ import React from "react";
 import ReviewList from "~/components/review/ReviewList";
 import MiniSearch from "~/components/home/MiniSearch";
 import { Paper, Typography } from "@mui/material";
+import { BasicBox } from "~/styles/Boxes";
 
 const ReviewPage = () => {
   return (
-    <Paper
-      sx={{
-        marginX: "auto",
-        maxWidth: "md",
-        padding: "25px",
-      }}
-    >
+    <BasicBox>
       <Typography align="center" variant="h4" component="div">
         후기
       </Typography>
 
       <MiniSearch />
       <ReviewList />
-    </Paper>
+    </BasicBox>
   );
 };
 

@@ -11,15 +11,7 @@ import {
 import { Person } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import { JobTags } from "~/components/application/Jobtags";
-
-const ContainerBox = styled(Container)({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  textAlign: "center",
-  padding: 10,
-});
+import { ContainerBox } from "~/styles/Boxes";
 
 const ProfileImage = styled(IconButton)({
   background: "#796f6f",

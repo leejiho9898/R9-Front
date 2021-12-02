@@ -2,18 +2,14 @@ import React from "react";
 import { NextPage } from "next";
 import { Box } from "@mui/system";
 import JobPostEditor from "~/components/job/JobPostEditor";
+import { BasicBox } from "~/styles/Boxes";
 
 const PostPage: NextPage = () => {
   return (
     <>
-      <Box
-        sx={{
-          marginX: "auto",
-          maxWidth: "md",
-        }}
-      >
+      <BasicBox>
         <JobPostEditor isEdit={false} />
-      </Box>
+      </BasicBox>
     </>
   );
 };

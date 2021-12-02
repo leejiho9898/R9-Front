@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
-import { styled } from "@mui/system";
-import { Typography, FormControl, TextField, Chip, Stack } from "@mui/material";
+import { Box, styled } from "@mui/system";
+import {
+  Typography,
+  FormControl,
+  TextField,
+  Chip,
+  Stack,
+  Button,
+} from "@mui/material";
 import JobCard from "~/components/home/JobCard";
+import { BasicBox } from "~/styles/Boxes";
 
 export interface Data {
   id: number;
@@ -100,44 +108,32 @@ const HomePage: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <ContainerBox>
+    <BasicBox>
       {/* 검색창 */}
       <SearchWrapper>
         {/* 검색창 */}
         <Typography mt={4} gutterBottom variant="h6" component="div">
           일자리 검색
         </Typography>
-        <FormControl sx={{ maxWidth: 800 }}>
-          <StyledStack
-            py={1}
-            spacing={1}
-            direction="row"
-            justifyContent="center"
-          >
+        <FormControl sx={{ width: 400 }}>
+          <Stack direction="row" justifyContent="space-between" spacing={0.25}>
             <TextField
+              sx={{ width: "100%", backgroundColor: "white" }}
               size="small"
               focused
-              value={searchTerm}
-              placeholder="검색어를 입력해주세요"
-              onChange={(event) => {
-                setSearchTerm(event.target.value);
-              }}
+              placeholder="후기를 보고 싶은 일자리를 검색해주세요"
             />
-          </StyledStack>
-
-          {/* 추천 검색어 */}
-          {/* <Box mt={1}> */}
-          <Stack direction="row" spacing={1} justifyContent="center">
-            {/* key값으로 index넣으면 안됨 */}
-            {HASHTAGS.map((item) => (
-              <Chip key={item} label={item} />
-            ))}
+            <Button variant="contained" sx={{ width: "3rem" }}>
+              검색
+            </Button>
           </Stack>
-          {/* </Box> */}
+          <Box>
+            <Stack direction="row" spacing={1} justifyContent="center"></Stack>
+          </Box>
         </FormControl>
       </SearchWrapper>
       <JobCard data={data} />
-    </ContainerBox>
+    </BasicBox>
   );
 };
 

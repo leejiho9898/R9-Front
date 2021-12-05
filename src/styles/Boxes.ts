@@ -5,7 +5,7 @@ import { styled } from "@mui/styles";
 export const BasicBox = styled(Paper)({
   marginX: "auto",
   maxWidth: "md",
-  padding: "25px",
+  padding: "20px",
 });
 
 /** 좁은 화면 */

@@ -1,3 +1,4 @@
+import { styled } from "@mui/styles";
 import React from "react";
 import ApplyerList from "~/components/apply/ApplyerList";
 import { ContainerBox } from "~/styles/Boxes";

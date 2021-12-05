@@ -20,7 +20,7 @@ const ProfileImage = styled(IconButton)({
   color: "#fff",
 });
 
-// 백엔드 연결하기
+// 지원자 사장님에게 보낸 지원서
 const hashtages1 = ["문서 작업", "매장 관리", "운전 가능"];
 const hashtages2 = ["주3회", "평일 오전", "오픈시간"];
 const hashtages3 = ["마포구", "종로구", "서울시"];
@@ -29,7 +29,7 @@ const hashtages3 = ["마포구", "종로구", "서울시"];
 const JobApplyPage2: NextPage = () => {
   return (
     <ContainerBox>
-      <Card sx={{ p: 4 }}>
+      <Card sx={{ p: 4, textAlign: "center" }}>
         {/* 지원자 정보 */}
         <Box>
           <ProfileImage>
@@ -39,7 +39,7 @@ const JobApplyPage2: NextPage = () => {
             홍길동 (65세)
           </Typography>
         </Box>
-        <Box p={2} sx={{ width: "80%", textAlign: "left" }}>
+        <Box p={2} sx={{ width: "80%" }}>
           <Typography variant="body2">주소</Typography>
           <Typography variant="body2">휴대전화</Typography>
           <Typography variant="body2">메일주소</Typography>
@@ -53,7 +53,7 @@ const JobApplyPage2: NextPage = () => {
 
         <Box px={2}>
           <Typography
-            align="left"
+            align="center"
             gutterBottom
             variant="subtitle2"
             component="div"

@@ -29,7 +29,7 @@ const ProfileImage = styled(IconButton)({
   color: "#fff",
 });
 
-// 백엔드 연결하기
+// 지원서 작성
 const hashtages1 = ["문서 작업", "매장 관리", "운전 가능"];
 const hashtages2 = ["주3회", "평일 오전", "오픈시간"];
 const hashtages3 = ["마포구", "종로구", "서울시"];

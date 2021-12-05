@@ -35,7 +35,7 @@ const ApplyerList = () => {
           marginBottom: 2,
         }}
       >
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} justifyContent="center">
           {/* 지원자 정보 */}
           <Box sx={{ textAlign: "center", marginRight: 1 }}>
             <ProfileImage>

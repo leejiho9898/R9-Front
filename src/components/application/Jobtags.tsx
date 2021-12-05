@@ -17,7 +17,7 @@ const StyledChip = styled(Chip)({
 export const JobTags = ({ title, type }: JobTagsProps) => {
   return (
     <Box m={2}>
-      <Typography align="left" gutterBottom variant="subtitle2">
+      <Typography align="center" gutterBottom variant="subtitle2">
         {title}
       </Typography>
       <Stack direction="row" spacing={1} justifyContent="center">

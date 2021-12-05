@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { findJobs } from "~/libs/api/jobs";
+import React from "react";
+import { BasicBox } from "~/styles/Boxes";
 
-function TestPage() {
-  const [data, setData] = useState<any>(null);
+const test = () => {
+  return <BasicBox>asd4asd456as4d asd4as54d</BasicBox>;
+};
 
-  useEffect(() => {
-    const fatchData = async () => {
-      const data = await findJobs().catch(console.error);
-      setData(data);
-    };
-    fatchData();
-  }, []);
-
-  return <div>{JSON.stringify(data)}</div>;
-}
-
-export default TestPage;
+export default test;

@@ -22,7 +22,6 @@ import {
   Login,
   PersonAdd,
   Logout,
-  Home,
   Comment,
   PersonAddAlt,
 } from "@mui/icons-material";
@@ -45,7 +44,6 @@ const StyledToolbar = styled(Toolbar)({
   // background: "linear-gradient(153deg, rgba(147,221,227,1) 8%, rgba(147,232,175,1) 74%, rgba(201,251,126,1) 100%)",
 });
 export const basicNavItems: NavItem[] = [
-  { name: "R9", href: "/", icon: <Home /> },
   { name: "알바 후기", href: "/jobs/reviews", icon: <Comment /> },
 ];
 export const userNavItems: NavItem[] = [
@@ -216,9 +214,21 @@ export const Navbar = () => {
                       </Button>
                     ))}
               </Stack>
-              <Stack spacing={2} direction="row">
+              <Stack spacing={1} direction="row">
                 {user ? (
-                  <UserInfo user={user} />
+                  <>
+                    <Button
+                      sx={{ width: "7rem" }}
+                      color="inherit"
+                      onClick={handleClickSignOut}
+                    >
+                      로그아웃
+                    </Button>
+
+                    <ListItem onClick={() => router.push("/myinfo")}>
+                      <UserInfo user={user} />
+                    </ListItem>
+                  </>
                 ) : (
                   <>
                     <Button

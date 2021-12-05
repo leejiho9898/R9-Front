@@ -93,7 +93,6 @@ const SearchWrapper = styled("div")({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  width: "70%",
   marginBottom: 2,
 });
 
@@ -116,7 +115,7 @@ const HomePage: NextPage = () => {
           일자리 검색
         </Typography>
         <FormControl sx={{ width: 400 }}>
-          <Stack direction="row" justifyContent="space-between" spacing={0.25}>
+          <Stack direction="row" spacing={0.25}>
             <TextField
               sx={{ width: "100%", backgroundColor: "white" }}
               size="small"

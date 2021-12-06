@@ -47,12 +47,14 @@ export const basicNavItems: NavItem[] = [
   { name: "알바 후기", href: "/jobs/reviews", icon: <Comment /> },
 ];
 export const userNavItems: NavItem[] = [
-  { name: "지원 내역", href: "???", icon: <PersonAddAlt /> },
+  { name: "지원 내역", href: "/apply/history", icon: <PersonAddAlt /> },
+  { name: "내정보 수정", href: "/myinfo", icon: <PersonAddAlt /> },
   //추후 추가 바람.
 ];
 
 export const businessNavItem: NavItem[] = [
   { name: "지원자 내역", href: "/apply/applyer", icon: <PersonAddAlt /> },
+  { name: "내정보 수정", href: "/myinfo", icon: <PersonAddAlt /> },
 ];
 export const Navbar = () => {
   const router = useRouter();
@@ -140,9 +142,7 @@ export const Navbar = () => {
                   <List>
                     {user ? (
                       <>
-                        <ListItem
-                          onClick={() => handleClickMenuLink("/myinfo")}
-                        >
+                        <ListItem>
                           <UserInfo user={user} />
                         </ListItem>
                         <ListItemButton onClick={handleClickSignOut}>
@@ -225,7 +225,7 @@ export const Navbar = () => {
                       로그아웃
                     </Button>
 
-                    <ListItem onClick={() => router.push("/myinfo")}>
+                    <ListItem>
                       <UserInfo user={user} />
                     </ListItem>
                   </>

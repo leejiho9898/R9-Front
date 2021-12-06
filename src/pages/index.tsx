@@ -5,12 +5,11 @@ import {
   Typography,
   FormControl,
   TextField,
-  Chip,
   Stack,
   Button,
 } from "@mui/material";
 import JobCard from "~/components/home/JobCard";
-import { BasicBox } from "~/styles/Boxes";
+import { BasicDarkBox } from "~/styles/Boxes";
 
 export interface Data {
   id: number;
@@ -107,7 +106,7 @@ const HomePage: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <BasicBox>
+    <BasicDarkBox>
       {/* 검색창 */}
       <SearchWrapper>
         {/* 검색창 */}
@@ -132,7 +131,7 @@ const HomePage: NextPage = () => {
         </FormControl>
       </SearchWrapper>
       <JobCard data={data} />
-    </BasicBox>
+    </BasicDarkBox>
   );
 };
 

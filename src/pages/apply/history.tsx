@@ -1,12 +1,12 @@
 import React from "react";
 import ApplyHistoryList from "~/components/apply/ApplyHistoryList";
-import { ContainerBox } from "~/styles/Boxes";
+import { BasicDarkBox } from "~/styles/Boxes";
 
 const applyHistory = () => {
   return (
-    <ContainerBox>
+    <BasicDarkBox>
       <ApplyHistoryList />
-    </ContainerBox>
+    </BasicDarkBox>
   );
 };
 

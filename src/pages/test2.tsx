@@ -1,11 +1,10 @@
-import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { NextPage } from "next";
-import useHashtagsEffect from "~/hooks/hashtag/useHashtagsEffect";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Chip } from "@mui/material";
+import useHashtagsEffect from "~/hooks/hashtag/useHashtagsEffect";
 
 const test: NextPage = () => {
   const { hashtags, largeCategorys, classificationCategory } =
@@ -30,8 +29,8 @@ const test: NextPage = () => {
         </Box>
         <TabPanel value={largeCategorys[0]}>
           {category1.map((ctgy, index) => (
-            <div>
-              <Chip key={index} label={ctgy.smallCategory} />
+            <div key={index}>
+              <Chip label={ctgy.smallCategory} />
               {ctgy.name}
             </div>
           ))}

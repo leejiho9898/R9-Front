@@ -21,6 +21,8 @@ import { selectJob } from "~/redux/slices/job-slice";
 import { useToggle } from "~/hooks/useToggle";
 import useDaumAdress from "~/hooks/kakao/useDaumAdress";
 import useJobForm from "~/hooks/job/useJobForm";
+import HashTagClick from "../common/HashTagClick";
+import moment from "moment";
 
 interface EditorProps {
   isEdit: boolean;
@@ -31,12 +33,13 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
   const [isModal, onToggleModal] = useToggle();
   const [zonecode, address1, onCompletePost] = useDaumAdress();
   const {
-    onChangeJobTextField,
+    onChangeNumber,
+    onChangeString,
     onChangeAdress,
     onChangeWorkingDay,
     onCreateJob,
   } = useJobForm();
-  const { title, workType, payment, personnel, age, gender, sectors, period } =
+  const { title, workType, payment, personnel, age, gender, wage, sectors } =
     job;
 
   const onCompletePostAndToggleModal = (data: Address) => {
@@ -58,7 +61,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
             variant="outlined"
             label="공고 제목"
             name="title"
-            onChange={onChangeJobTextField}
+            onChange={onChangeString}
             value={title}
           />
 
@@ -69,19 +72,28 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
             variant="outlined"
             label="근무 형태"
             name="workType"
-            onChange={onChangeJobTextField}
+            onChange={onChangeString}
             value={workType}
           />
-
+          <Typography align="left" variant="h6">
+            업직종
+          </Typography>
+          <TextField
+            variant="outlined"
+            label="업직종"
+            name="sectors"
+            onChange={onChangeString}
+            value={sectors}
+          />
           <Typography align="left" variant="h6">
             모집 인원
           </Typography>
           <TextField
-            type="number"
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             variant="outlined"
             label="모집 인원 (명)"
             name="personnel"
-            onChange={onChangeJobTextField}
+            onChange={onChangeNumber}
             value={personnel}
           />
           <Typography align="left" variant="h6">
@@ -91,7 +103,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
             style={{ width: "7rem" }}
             label="성별"
             name="gender"
-            onChange={onChangeJobTextField}
+            onChange={onChangeString}
             value={gender}
           >
             <MenuItem value="ANY">상관없음</MenuItem>
@@ -107,7 +119,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
             variant="outlined"
             label="희망 연령대 (세)"
             name="age"
-            onChange={onChangeJobTextField}
+            onChange={onChangeNumber}
             value={age}
           />
 
@@ -119,7 +131,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
               style={{ width: "7rem" }}
               label="급여 형태"
               name="payment"
-              onChange={onChangeJobTextField}
+              onChange={onChangeString}
               value={payment}
             >
               <MenuItem value="PERHOUR">시급</MenuItem>
@@ -132,7 +144,8 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
               variant="outlined"
               label="급여 (원)"
               name="wage"
-              onChange={onChangeJobTextField}
+              onChange={onChangeNumber}
+              value={wage}
             />
           </Stack>
           <Typography align="left" variant="h6">
@@ -197,7 +210,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
             variant="outlined"
             label="근무 내용"
             name="detail"
-            onChange={onChangeJobTextField}
+            onChange={onChangeString}
           />
 
           <Typography align="left" variant="h6">
@@ -208,53 +221,40 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
               <Box sx={{ display: "flex", flexWrap: "wrap" }}>
                 <FormControlLabel
                   label="하루(1~2일)"
-                  control={
-                    <Radio value="하루" onChange={onChangeJobTextField} />
-                  }
+                  control={<Radio value="하루" onChange={onChangeString} />}
                 />
                 <FormControlLabel
                   control={
-                    <Radio value="1주일이하" onChange={onChangeJobTextField} />
+                    <Radio value="1주일이하" onChange={onChangeString} />
                   }
                   label="1주일 이하"
                 />
                 <FormControlLabel
                   control={
-                    <Radio
-                      value="1주일~1개월"
-                      onChange={onChangeJobTextField}
-                    />
+                    <Radio value="1주일~1개월" onChange={onChangeString} />
                   }
                   label="1주일~1개월"
                 />
                 <FormControlLabel
                   control={
-                    <Radio
-                      value="1개월~3개월"
-                      onChange={onChangeJobTextField}
-                    />
+                    <Radio value="1개월~3개월" onChange={onChangeString} />
                   }
                   label="1개월~3개월"
                 />
                 <FormControlLabel
                   control={
-                    <Radio
-                      value="1개월~3개월"
-                      onChange={onChangeJobTextField}
-                    />
+                    <Radio value="3개월~6개월" onChange={onChangeString} />
                   }
                   label="3개월~6개월"
                 />
                 <FormControlLabel
                   control={
-                    <Radio value="6개월~1년" onChange={onChangeJobTextField} />
+                    <Radio value="6개월~1년" onChange={onChangeString} />
                   }
                   label="6개월~1년"
                 />
                 <FormControlLabel
-                  control={
-                    <Radio value="1년이상" onChange={onChangeJobTextField} />
-                  }
+                  control={<Radio value="1년이상" onChange={onChangeString} />}
                   label="1년이상"
                 />
               </Box>
@@ -279,7 +279,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
               }}
               sx={{ width: 150 }}
               name="startTime"
-              onChange={onChangeJobTextField}
+              onChange={onChangeString}
             />
             <Typography align="left" variant="h6">
               ~
@@ -296,7 +296,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
               }}
               sx={{ width: 150 }}
               name="endTime"
-              onChange={onChangeJobTextField}
+              onChange={onChangeString}
             />
           </Stack>
 
@@ -344,6 +344,11 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
             }}
           />
           <Typography align="left" variant="h6">
+            해쉬태그
+          </Typography>
+          <HashTagClick />
+
+          <Typography align="left" variant="h6">
             모집마감일
           </Typography>
           <TextField
@@ -353,7 +358,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
               shrink: true,
             }}
             name="deadline"
-            onChange={onChangeJobTextField}
+            onChange={onChangeString}
           />
           <Button variant="contained" onClick={onCreateJob}>
             작성

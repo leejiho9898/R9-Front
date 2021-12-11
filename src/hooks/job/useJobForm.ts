@@ -2,7 +2,7 @@ import { SelectChangeEvent } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createJobAPI, deleteJobAPI } from "src/libs/api/job";
-import { selectJob, setJob } from "src/redux/slices/job-slice";
+import { selectJob, setJob, setJobNumber } from "src/redux/slices/job-slice";
 import { Gender, PayMentsMethod } from "src/types/enums";
 
 export default function useJobForm() {
@@ -20,11 +20,35 @@ export default function useJobForm() {
     일: 7,
   };
 
-  const onChangeJobTextField = (
+  const onChangeString = (
     e:
       | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
       | SelectChangeEvent<PayMentsMethod | Gender>
   ) => {
+    const { value, name } = e.target;
+    const body = {
+      key: name,
+      value,
+    };
+    dispatch(setJob(body));
+    console.log(job);
+  };
+
+  const onChangeNumber = (
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | SelectChangeEvent<PayMentsMethod | Gender>
+  ) => {
+    const { value, name } = e.target;
+    const body = {
+      key: name,
+      value: Number(value),
+    };
+    dispatch(setJobNumber(body));
+    console.log(job);
+  };
+
+  const onChangeHashtags = (e: any) => {
     const { value, name } = e.target;
     const body = {
       key: name,
@@ -85,9 +109,11 @@ export default function useJobForm() {
   };
 
   return {
-    onChangeJobTextField,
+    onChangeString,
+    onChangeNumber,
     onChangeAdress,
     onChangeWorkingDay,
+    onChangeHashtags,
     onCreateJob,
     onDeleteJob,
   };

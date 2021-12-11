@@ -15,13 +15,14 @@ export interface IJobState {
   adress: string;
   payment: PayMentsMethod;
   workingDay: string[];
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
   wage: number;
   status: JobStatus;
   period: string;
   gender: Gender;
   sectors: string;
+  hashtags: any[];
 }
 
 export interface IReviewState {

@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import useHashtagsEffect from "~/hooks/hashtag/useHashtagsEffect";
 import { Chip, Paper } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { selectJob, setJob, setJobNumber } from "~/redux/slices/job-slice";
 
-interface HashTagClickProps {
-  callBack: () => void;
-}
-const HashTagClick = ({ callBack }: HashTagClickProps) => {
+const HashTagClick = () => {
   const { hashtags, categorys } = useHashtagsEffect();
-
+  const dispatch = useDispatch();
+  const job = useSelector(selectJob);
   const [value, setValue] = useState<string>(""); // prop가 전달이 안되서 initial value 설정이 안돼 side effect 사용
 
   useEffect(() => {
@@ -38,8 +38,18 @@ const HashTagClick = ({ callBack }: HashTagClickProps) => {
             >
               {hashtags.map((hashtag, ii) =>
                 hashtag.category == category ? (
-                  <Box sx={{ m: 0.5 }}>
-                    <Chip key={ii} label={hashtag.name} onClick={callBack} />
+                  <Box sx={{ m: 0.5 }} key={ii}>
+                    <Chip
+                      label={hashtag.name}
+                      onClick={() => {
+                        const body = {
+                          key: "hashtags",
+                          value: [...job.hashtags, { id: hashtag.id }],
+                        };
+                        dispatch(setJob(body));
+                        console.log(job);
+                      }}
+                    />
                   </Box>
                 ) : null
               )}

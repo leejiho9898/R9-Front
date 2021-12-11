@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import moment from "moment";
 import { Gender, JobStatus, PayMentsMethod } from "src/types/enums";
 import { IJobState } from "src/types/stores";
 import { AppState } from "../store";
@@ -13,13 +14,14 @@ const initialState: IJobState = {
   adress: "",
   payment: PayMentsMethod.PERHOUR,
   workingDay: [],
-  startTime: new Date(),
-  endTime: new Date(),
+  startTime: "07:30",
+  endTime: "07:30",
   wage: 8750,
   status: JobStatus.ACTIVATE,
   period: "하루",
   gender: Gender.ANY,
-  sectors: "요식업",
+  sectors: "",
+  hashtags: [],
 };
 
 export const jobSlice = createSlice({
@@ -29,8 +31,14 @@ export const jobSlice = createSlice({
     setJob: (state: any, { payload: { key, value } }: PayloadAction<any>) => {
       state[key] = value;
     },
+    setJobNumber: (
+      state: any,
+      { payload: { key, value } }: PayloadAction<{ key: string; value: number }>
+    ) => {
+      state[key] = value;
+    },
   },
 });
 
-export const { setJob } = jobSlice.actions;
+export const { setJob, setJobNumber } = jobSlice.actions;
 export const selectJob = (state: AppState) => state.job;

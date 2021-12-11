@@ -7,9 +7,12 @@ export default function useReviewEffect(bizId: any) {
     const getData = async () => {
       try {
         const reviews = await findBizReviews(bizId);
+        if (!reviews) {
+          throw new Error("리뷰가 없습니다.");
+        }
         setReviews(reviews);
       } catch (error) {
-        alert("스케쥴 목록을 불러오는데 실패했습니다.");
+        console.log(error, "리뷰 목록을 불러오는데 실패했습니다.");
       }
     };
     getData();

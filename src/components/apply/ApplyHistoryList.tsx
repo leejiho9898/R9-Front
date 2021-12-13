@@ -1,4 +1,4 @@
-import { Card, Typography, Stack, Button } from "@mui/material";
+import { Card, Typography, Stack, Button, Link } from "@mui/material";
 import { Box } from "@mui/system";
 import moment from "moment";
 import React from "react";
@@ -31,8 +31,14 @@ const ApplyHistoryList = () => {
             {/* 지원자 정보 */}
             <Box sx={{ width: "100%" }}>
               <Typography gutterBottom variant="subtitle2" component="div">
-                {apply.job.title} (
-                {moment(apply.createdAt).format("YYYY-MM-DD")} 지원)
+                <Link
+                  href={`/jobs/${apply.job.id}`}
+                  underline="hover"
+                  color="inherit"
+                >
+                  {apply.job.title}
+                </Link>{" "}
+                ({moment(apply.createdAt).format("YYYY-MM-DD")} 지원)
               </Typography>
               <Box p={1} sx={{ textAlign: "left" }}>
                 <Stack direction="row" spacing={1}>

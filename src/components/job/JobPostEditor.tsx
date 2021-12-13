@@ -22,7 +22,6 @@ import { useToggle } from "~/hooks/useToggle";
 import useDaumAdress from "~/hooks/kakao/useDaumAdress";
 import useJobForm from "~/hooks/job/useJobForm";
 import HashTagClick from "../common/HashTagClick";
-import moment from "moment";
 
 interface EditorProps {
   isEdit: boolean;

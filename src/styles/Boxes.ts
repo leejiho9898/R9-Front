@@ -25,7 +25,7 @@ export const ContainerBox = styled(Container)({
 });
 
 export const TypoQue = styled(Typography)({
-  width: "6rem",
+  width: "7rem",
   fontWeight: "bold",
   fontSize: "13px",
 });

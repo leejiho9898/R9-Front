@@ -2,6 +2,7 @@ import { Gender, JobStatus, PayMentsMethod } from "./enums";
 import { User } from "./user";
 
 export interface Job {
+  id: number;
   writer: User | null;
   title: string;
   deadline: Date;

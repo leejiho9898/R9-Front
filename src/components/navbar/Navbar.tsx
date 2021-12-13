@@ -129,7 +129,8 @@ export const Navbar = () => {
                             <ListItemText>{name} </ListItemText>
                           </ListItemButton>
                         ))
-                      : userNavItems.map(({ name, href, icon }) => (
+                      : user?.role === Role.USER
+                      ? userNavItems.map(({ name, href, icon }) => (
                           <ListItemButton
                             key={name}
                             onClick={() => router.push(href)}
@@ -137,7 +138,8 @@ export const Navbar = () => {
                             <ListItemIcon>{icon}</ListItemIcon>
                             <ListItemText>{name} </ListItemText>
                           </ListItemButton>
-                        ))}
+                        ))
+                      : null}
                   </List>
                   <List>
                     {user ? (
@@ -204,7 +206,8 @@ export const Navbar = () => {
                         {item.name}
                       </Button>
                     ))
-                  : userNavItems.map((item) => (
+                  : user?.role === Role.USER
+                  ? userNavItems.map((item) => (
                       <Button
                         key={item.name}
                         color="inherit"
@@ -212,7 +215,8 @@ export const Navbar = () => {
                       >
                         {item.name}
                       </Button>
-                    ))}
+                    ))
+                  : null}
               </Stack>
               <Stack spacing={1} direction="row">
                 {user ? (

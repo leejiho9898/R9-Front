@@ -18,6 +18,12 @@ export const findJobsAPI = async () => {
   return resposne.data;
 };
 
+/** 내 공고 리스트 호출 */
+export const findJobsMeAPI = async () => {
+  const resposne = await client.get(`${url.JOBS}/me`);
+  return resposne.data;
+};
+
 /** 특정 ID 가진 공고 호출 */
 export const findJobByIdAPI = async (id: any) => {
   const resposne = await client.get(`${url.JOBS}/${id}`);
@@ -32,4 +38,9 @@ export const deleteJobAPI = async (id: number) => {
 /** 공고 업데이트 */
 export const updateJobAPI = async (id: number) => {
   await client.patch(`${url.JOBS}/${id}`);
+};
+
+/** 공고 상태 업데이트 */
+export const switchJobStatus = async (id: number) => {
+  await client.patch(`${url.JOBS}/status/${id}`);
 };

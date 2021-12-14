@@ -20,4 +20,5 @@ export interface Job {
   period: string;
   gender: Gender;
   sectors: string;
+  createAt: Date;
 }

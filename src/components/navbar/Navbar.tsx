@@ -24,6 +24,7 @@ import {
   Logout,
   Comment,
   PersonAddAlt,
+  FormatListBulleted,
 } from "@mui/icons-material";
 import { usePostAuthSignOutMutation } from "~/redux/services/api";
 import { selectAuth } from "~/redux/slices/auth-slice";
@@ -53,7 +54,11 @@ export const userNavItems: NavItem[] = [
 ];
 
 export const businessNavItem: NavItem[] = [
-  { name: "지원자 내역", href: "/apply/applyer", icon: <PersonAddAlt /> },
+  {
+    name: "내 공고 목록",
+    href: "/jobs/history",
+    icon: <FormatListBulleted />,
+  },
   { name: "내정보 수정", href: "/myinfo", icon: <PersonAddAlt /> },
 ];
 export const Navbar = () => {

@@ -12,6 +12,6 @@ export enum JobStatus {
 
 export enum Gender {
   ANY = "ANY",
-  MAIL = "MAIL",
-  FEMAIL = "FEMAIL",
+  MAIL = "MALE",
+  FEMAIL = "FEMALE",
 }

@@ -1,3 +1,5 @@
+import { Hashtags } from "./hashtags";
+
 export enum Role {
   ADMIN = "ADMIN",
   USER = "USER",
@@ -30,6 +32,7 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
+  useHashtags?: Hashtags[];
 }
 export interface ProfileImage {
   ETag: string;

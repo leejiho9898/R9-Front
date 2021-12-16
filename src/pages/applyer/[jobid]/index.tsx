@@ -1,13 +1,12 @@
-import { styled } from "@mui/styles";
 import React from "react";
 import ApplyerList from "~/components/apply/ApplyerList";
-import { BasicBox } from "~/styles/Boxes";
+import { BasicDarkBox } from "~/styles/Boxes";
 
 const applyer = () => {
   return (
-    <BasicBox>
+    <BasicDarkBox>
       <ApplyerList />
-    </BasicBox>
+    </BasicDarkBox>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import ReviewList from "~/components/review/ReviewList";
 import MiniSearch from "~/components/home/MiniSearch";
-import { Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { BasicBox } from "~/styles/Boxes";
 
 const ReviewPage = () => {

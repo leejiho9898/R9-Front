@@ -7,9 +7,11 @@ import {
   TextField,
   Stack,
   Button,
+  Grid,
 } from "@mui/material";
 import JobCard from "~/components/home/JobCard";
 import { BasicDarkBox } from "~/styles/Boxes";
+import SortButtons from "~/components/home/SortButtons";
 
 export interface Data {
   id: number;
@@ -80,24 +82,12 @@ export const data: Data[] = [
   },
 ];
 
-const ContainerBox = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-});
-
 const SearchWrapper = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   marginBottom: 2,
-});
-
-const StyledStack = styled(Stack)({
-  display: "flex",
-  alignItems: "center",
 });
 
 const HASHTAGS = ["돌봄", "주3회", "시니어 일자리", "당일 알바"];
@@ -130,6 +120,9 @@ const HomePage: NextPage = () => {
           </Box>
         </FormControl>
       </SearchWrapper>
+      <Grid item xs={12} md={12}>
+        <SortButtons />
+      </Grid>
       <JobCard data={data} />
     </BasicDarkBox>
   );

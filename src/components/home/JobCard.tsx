@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { styled } from "@mui/system";
-import SortButtons from "./SortButtons";
 import { Data } from "~/pages";
 // import useFetch from "./../../hooks/job/fetchApi"; // api-fetching hook
 import { useDispatch } from "react-redux";
@@ -51,9 +50,7 @@ const JobCard = ({ data }: JobCardProps) => {
 
   return (
     <Cards container spacing={3}>
-      <Grid item xs={12} md={12}>
-        <SortButtons />
-      </Grid>
+
 
       {data.map((item) => {
         return (

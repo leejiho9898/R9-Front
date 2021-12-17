@@ -10,11 +10,12 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { styled } from "@mui/system";
-import { Data } from "~/pages";
 // import useFetch from "./../../hooks/job/fetchApi"; // api-fetching hook
 import { useDispatch } from "react-redux";
 import { addJobs } from "../../redux/slices/jobSlice";
 import { findJobsAPI } from "../../libs/api/job";
+import { Job } from "~/types/job";
+import { PayMentsMethod } from "~/types/enums";
 
 const StyledBox = styled(Paper)(({ theme }) => ({
   paddingTop: 20,
@@ -32,7 +33,7 @@ const Cards = styled(Grid)({
 });
 
 export interface JobCardProps {
-  data: Data[];
+  data: Job[];
 }
 
 const JobCard = ({ data }: JobCardProps) => {
@@ -50,10 +51,8 @@ const JobCard = ({ data }: JobCardProps) => {
 
   return (
     <Cards container spacing={3}>
-
-
-      {data.map((item) => {
-        return (
+      {data &&
+        data.map((item) => (
           <Grid item xs={10} md={6} key={item.id}>
             <StyledBox>
               <Box sx={{ mx: 2 }}>
@@ -65,7 +64,7 @@ const JobCard = ({ data }: JobCardProps) => {
                       variant="h6"
                       component="div"
                     >
-                      {item.companyName}
+                      {item.writer?.bizName}
                     </Typography>
                   </Grid>
                   <Grid item>
@@ -80,26 +79,32 @@ const JobCard = ({ data }: JobCardProps) => {
                   </Grid>
                 </Grid>
                 <Typography color="text.secondary" variant="body2">
-                  {item.location}
+                  {item.adress}
                   <br />
-                  {item.role}
+                  {item.workType}
                   <br />
-                  요일선택: {item.workDay}
+                  요일선택: {item.workingDay}
                   <br />
-                  {item.calutatePayBy}: {item.payRate.toLocaleString()}
+                  {item.payment === PayMentsMethod.PERHOUR
+                    ? "시급"
+                    : item.payment === PayMentsMethod.PERDAY
+                    ? "일급"
+                    : "월급"}
+                  : {item.wage}
                 </Typography>
 
                 <Box pt={1}>
                   <Stack direction="row" spacing={1}>
-                    {item.hashtags.map((hashtag) => (
-                      <Chip key={hashtag} label={hashtag} />
-                    ))}
+                    {item &&
+                      item.hashtags.map((hashtag, index) => (
+                        <Chip key={index} label={hashtag.name} />
+                      ))}
                   </Stack>
                 </Box>
               </Box>
               <Box mx={2}>
                 <Button
-                  onClick={() => router.push("/detail2")}
+                  onClick={() => router.push(`/jobs/${item.id}`)}
                   fullWidth
                   variant="contained"
                   color="secondary"
@@ -111,8 +116,7 @@ const JobCard = ({ data }: JobCardProps) => {
               </Box>
             </StyledBox>
           </Grid>
-        );
-      })}
+        ))}
     </Cards>
   );
 };

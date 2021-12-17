@@ -33,6 +33,8 @@ export interface User {
   updatedAt: Date;
   deletedAt?: Date;
   useHashtags?: Hashtags[];
+  bizName?: string;
+  bizNum?: string;
 }
 export interface ProfileImage {
   ETag: string;

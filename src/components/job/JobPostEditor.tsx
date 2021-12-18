@@ -29,7 +29,8 @@ interface EditorProps {
 
 const JobPostEditor = ({ isEdit }: EditorProps) => {
   const job = useSelector(selectJob);
-  const [isModal, onToggleModal] = useToggle();
+  const [isDaum, onToggleDaum] = useToggle();
+  const [isHashtag, onToggleHashtag] = useToggle();
   const [zonecode, address1, onCompletePost] = useDaumAdress();
   const {
     onChangeNumber,
@@ -43,7 +44,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
 
   const onCompletePostAndToggleModal = (data: Address) => {
     onCompletePost(data);
-    onToggleModal();
+    onToggleDaum();
   };
   return (
     <Paper sx={{ padding: "25px" }}>
@@ -303,8 +304,8 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
             근무 주소
           </Typography>
           <Modal
-            open={isModal}
-            onClose={onToggleModal}
+            open={isDaum}
+            onClose={onToggleDaum}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
@@ -326,7 +327,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
           </Modal>
           <Stack direction="row" spacing={4}>
             <TextField variant="outlined" label="우편 주소" value={zonecode} />
-            <Button onClick={onToggleModal}>우편번호 찾기</Button>
+            <Button onClick={onToggleDaum}>우편번호 찾기</Button>
           </Stack>
           <TextField
             variant="outlined"
@@ -342,10 +343,10 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
               onChangeAdress(address1, e);
             }}
           />
-          <Typography align="left" variant="h6">
-            해쉬태그
-          </Typography>
-          <HashTagClick />
+          <Button variant="text" onClick={onToggleHashtag}>
+            핵심 키워드 추가하기
+          </Button>
+          <HashTagClick isModal={isHashtag} onToggleModal={onToggleHashtag} />
 
           <Typography align="left" variant="h6">
             모집마감일

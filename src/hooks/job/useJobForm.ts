@@ -71,7 +71,7 @@ export default function useJobForm() {
   };
 
   const onChangeWorkingDay = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    /** 지금 입력하고 한클릭씩 지연되는 이슈있음 */
+    /** 일주일 순서에 상관없이 입력받고 순서대로 출력함 */
     const { checked, id } = e.target;
     if (checked) {
       setWeekgDay([...weekDay.concat(id)]);

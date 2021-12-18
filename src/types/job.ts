@@ -1,4 +1,5 @@
 import { Gender, JobStatus, PayMentsMethod } from "./enums";
+import { Hashtags } from "./hashtags";
 import { User } from "./user";
 
 export interface Job {
@@ -21,4 +22,5 @@ export interface Job {
   gender: Gender;
   sectors: string;
   createAt: Date;
+  hashtags: Hashtags[];
 }

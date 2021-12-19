@@ -6,6 +6,7 @@ import { BasicDarkBox } from "~/styles/Boxes";
 import Image from "next/image";
 import { useSearchForm } from "~/hooks/search/useSearchForm";
 import { customjob, newjob } from "~/assets/img";
+import Search from "~/components/home/Search";
 
 const HomePage: NextPage = () => {
   const { search, onChangeSearch, onSearch } = useSearchForm();
@@ -37,23 +38,7 @@ const HomePage: NextPage = () => {
           </Box>
           가 있으세요?
         </Typography>
-
-        <Stack direction="row" spacing={0.25} mt="5">
-          <TextField
-            sx={{
-              width: "80%",
-              backgroundColor: "white",
-              borderRadius: 10,
-            }}
-            size="small"
-            focused
-            placeholder="아르바이트를 검색해주세요"
-            value={search}
-          />
-          <Button variant="contained" sx={{ width: "3rem" }}>
-            검색
-          </Button>
-        </Stack>
+        <Search />
 
         <Box
           mt={5}

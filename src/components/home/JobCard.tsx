@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   Box,
   Chip,
@@ -10,10 +9,6 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { styled } from "@mui/system";
-// import useFetch from "./../../hooks/job/fetchApi"; // api-fetching hook
-import { useDispatch } from "react-redux";
-import { addJobs } from "../../redux/slices/jobSlice";
-import { findJobsAPI } from "../../libs/api/job";
 import { Job } from "~/types/job";
 import { PayMentsMethod } from "~/types/enums";
 
@@ -37,17 +32,7 @@ export interface JobCardProps {
 }
 
 const JobCard = ({ data }: JobCardProps) => {
-  const dispatch = useDispatch();
   const router = useRouter();
-
-  useEffect(() => {
-    const fetchJobs = async () => {
-      const jobs = await findJobsAPI().catch(console.error);
-      // console.log("잡", jobs);
-      dispatch(addJobs(jobs)); // 여기 확인 필요
-    };
-    fetchJobs();
-  }, []);
 
   return (
     <Cards container spacing={3}>
@@ -64,7 +49,7 @@ const JobCard = ({ data }: JobCardProps) => {
                       variant="h6"
                       component="div"
                     >
-                      {item.writer?.bizName}
+                      {item.title}
                     </Typography>
                   </Grid>
                   <Grid item>
@@ -79,6 +64,8 @@ const JobCard = ({ data }: JobCardProps) => {
                   </Grid>
                 </Grid>
                 <Typography color="text.secondary" variant="body2">
+                  {item.writer?.bizName}
+                  <br />
                   {item.adress}
                   <br />
                   {item.workType}

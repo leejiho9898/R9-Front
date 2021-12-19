@@ -39,7 +39,7 @@ export const theme = createTheme(
     palette: {
       primary: {
         // 메인컬러 test중
-        main: indigo[500],
+        main: "#0988E3",
         dark: blue[600],
         contrastText: grey[100],
         // main: lightGreen[400],

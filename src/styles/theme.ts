@@ -40,7 +40,7 @@ export const theme = createTheme(
       primary: {
         // 메인컬러 test중
         main: "#0988E3",
-        dark: blue[600],
+        dark: lightBlue[600],
         contrastText: grey[100],
         // main: lightGreen[400],
         // dark: green[400],

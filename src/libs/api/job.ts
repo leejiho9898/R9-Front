@@ -14,7 +14,7 @@ export const createJobAPI = async (job: IJobState) => {
 
 /** 공고 리스트 호출 */
 export const findJobsAPI = async () => {
-  const resposne = await client.get(url.JOBS);
+  const resposne = await client.get(`${url.JOBS}?pageNo=1&pageSize=10`);
   return resposne.data;
 };
 
@@ -43,4 +43,10 @@ export const updateJobAPI = async (id: number) => {
 /** 공고 상태 업데이트 */
 export const switchJobStatus = async (id: number) => {
   await client.patch(`${url.JOBS}/status/${id}`);
+};
+
+/** 공고 검색 */
+export const searchJobAPI = async (title: string) => {
+  const resposne = await client.get(`${url.JOBS}/search?title=${title}`);
+  return resposne.data;
 };

@@ -1,63 +1,81 @@
-import React, { useState } from "react";
+import React from "react";
 import { NextPage } from "next";
 import { Box, styled } from "@mui/system";
-import {
-  Typography,
-  FormControl,
-  TextField,
-  Stack,
-  Button,
-  Grid,
-} from "@mui/material";
-import JobCard from "~/components/home/JobCard";
+import { Typography, TextField, Stack, Button, Link } from "@mui/material";
 import { BasicDarkBox } from "~/styles/Boxes";
-
-import { useJobEffect } from "~/hooks/job/useJobEffect";
-
-const SearchWrapper = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  marginBottom: 2,
-});
-
-const HASHTAGS = ["돌봄", "주3회", "시니어 일자리", "당일 알바"];
+import Image from "next/image";
+import { useSearchForm } from "~/hooks/search/useSearchForm";
+import { customjob, newjob } from "~/assets/img";
 
 const HomePage: NextPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { jobs } = useJobEffect();
-  console.log(jobs);
+  const { search, onChangeSearch, onSearch } = useSearchForm();
   return (
-    <BasicDarkBox>
-      {/* 검색창 */}
-      <SearchWrapper>
-        {/* 검색창 */}
-        <Typography mt={4} gutterBottom variant="h6" component="div">
-          일자리 검색
-        </Typography>
-        <FormControl sx={{ width: 400 }}>
-          <Stack direction="row" spacing={0.25}>
-            <TextField
-              sx={{ width: "100%", backgroundColor: "white" }}
-              size="small"
-              focused
-              placeholder="후기를 보고 싶은 일자리를 검색해주세요"
-            />
-            <Button variant="contained" sx={{ width: "3rem" }}>
-              검색
-            </Button>
-          </Stack>
-          <Box>
-            <Stack direction="row" spacing={1} justifyContent="center"></Stack>
+    <Box sx={{ width: "100%" }}>
+      <BasicDarkBox>
+        <Typography
+          mt={4}
+          gutterBottom
+          variant="h4"
+          component="div"
+          textAlign="left"
+          display="flex"
+        >
+          찾
+          <Box sx={{ height: "3rem", backgroundColor: "rgb(252,233,109)" }}>
+            으시는
           </Box>
-        </FormControl>
-      </SearchWrapper>
-      <Typography variant="h6" component="div" textAlign="center">
-        맞춤 일자리
-      </Typography>
-      <JobCard data={jobs} />
-    </BasicDarkBox>
+          <>&nbsp;&nbsp;</>
+          <br />
+          <Box
+            sx={{
+              height: "3rem",
+              color: "rgb(142, 252, 186)",
+              backgroundColor: "rgb(82,108,241)",
+            }}
+          >
+            아르바이트
+          </Box>
+          가 있으세요?
+        </Typography>
+
+        <Stack direction="row" spacing={0.25} mt="5">
+          <TextField
+            sx={{
+              width: "80%",
+              backgroundColor: "white",
+              borderRadius: 10,
+            }}
+            size="small"
+            focused
+            placeholder="아르바이트를 검색해주세요"
+            value={search}
+          />
+          <Button variant="contained" sx={{ width: "3rem" }}>
+            검색
+          </Button>
+        </Stack>
+
+        <Box
+          mt={5}
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            flexWrap: "wrap",
+          }}
+        >
+          <Link underline="none" href="/">
+            <Box sx={{ border: "1px solid #d5d3d3", width: "300px" }}>
+              <Image src={newjob} alt="신규 일자리" />
+            </Box>
+          </Link>
+          <Link underline="none" href="/">
+            <Box sx={{ border: "1px solid #d5d3d3", width: "300px" }}>
+              <Image src={customjob} alt="맞춤 일자리" />
+            </Box>
+          </Link>
+        </Box>
+      </BasicDarkBox>
+    </Box>
   );
 };
 

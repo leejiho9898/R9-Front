@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { findJobsAPI } from "~/libs/api/job";
-import { Job } from "~/types/job";
+import { searchJobAPI } from "~/libs/api/job";
 
-export function useJobEffect() {
+export function useJobSearchEffect(query: any) {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      const jobs = await findJobsAPI();
+      const jobs = await searchJobAPI(query);
       console.log(jobs);
-      setJobs(jobs.items);
+      setJobs(jobs);
     };
     getData();
   }, [setJobs]);

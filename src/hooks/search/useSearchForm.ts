@@ -7,8 +7,7 @@ export const useSearchForm = () => {
 
   const [search, onChangeSearch] = useInput("");
 
-  const onSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSearch = () => {
     if (search.length === 0) return false;
     router.push(`/search?title=${search}`);
   };

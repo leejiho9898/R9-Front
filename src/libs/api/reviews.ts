@@ -1,4 +1,3 @@
-
 import { IReviewState } from "~/types/stores";
 import { client } from ".";
 
@@ -15,7 +14,9 @@ export const createReview = async (review: IReviewState) => {
 };
 
 /** 리뷰 목록 조회 */
-export const findBizReviews = async (bizId: any) => {
-  const response = await client.get(`/reviews/search/${bizId}`);
+export const findBizReviews = async (bizId: any, pageNo: number) => {
+  const response = await client.get(
+    `/reviews/search/${bizId}?pageNo=${pageNo}&pageSize=10`
+  );
   return response.data;
 };

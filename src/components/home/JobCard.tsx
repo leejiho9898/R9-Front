@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { styled } from "@mui/system";
 import { Job } from "~/types/job";
 import { PayMentsMethod } from "~/types/enums";
+import StatusBox from "./StatusBox";
 
 const StyledBox = styled(Paper)(({ theme }) => ({
   paddingTop: 20,
@@ -58,8 +59,7 @@ const JobCard = ({ data }: JobCardProps) => {
                       variant="subtitle1"
                       component="div"
                     >
-                      {/* 위치정보 넣기  FU */}
-                      1.5km
+                      <StatusBox status={item.status} />
                     </Typography>
                   </Grid>
                 </Grid>

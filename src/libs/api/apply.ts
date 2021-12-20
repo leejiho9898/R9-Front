@@ -3,6 +3,15 @@ const url = {
   APPLYS: "/applys",
 };
 
+/** 지원서 작성 */
+export const createApplyAPI = async (body: {
+  job: number;
+  moreDetail: string;
+}) => {
+  const response = await client.post(url.APPLYS, body);
+  return response.data;
+};
+
 /** 내 지원서 목록 보기 */
 export const findMyApplysAPI = async () => {
   const response = await client.get(url.APPLYS);

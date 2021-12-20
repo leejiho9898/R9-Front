@@ -11,6 +11,7 @@ import JobIcons from "../application/JobIcons";
 import StatusBox from "../home/StatusBox";
 import moment from "moment";
 import { Job } from "~/types/job";
+import { Gender } from "~/types/enums";
 
 const StyledBox = styled(Box)({
   textAlign: "center",
@@ -50,9 +51,9 @@ const JobContents = ({ job }: JobContentsProps) => {
         <Typography gutterBottom component="div">
           <li>{job?.age}대 선호</li>
           <li>
-            {job?.gender === "ANY"
+            {job?.gender === Gender.ANY
               ? "성별무관"
-              : job?.gender === "MAIL"
+              : job?.gender === Gender.MAIL
               ? "남성"
               : "여성"}
             선호

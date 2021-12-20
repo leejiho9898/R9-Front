@@ -26,7 +26,14 @@ const StopBox = styled(ActivateBox)({
 const StatusBox = ({ status }: IStatusProps) => {
   return (
     <div>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          margin: 1,
+          textAlign: "center",
+        }}
+      >
         {status === JobStatus.ACTIVATE ? (
           <ActivateBox>모집중</ActivateBox>
         ) : status === JobStatus.INACTIVATE ? (

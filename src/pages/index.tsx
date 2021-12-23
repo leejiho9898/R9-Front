@@ -48,14 +48,14 @@ const HomePage: NextPage = () => {
             flexWrap: "wrap",
           }}
         >
-          <Link underline="none" href="/">
+          <Link underline="none" href="search?title=">
             <Box sx={{ border: "1px solid #d5d3d3", width: "300px" }}>
-              <Image src={newjob} alt="신규 일자리" />
+              <Image src={customjob} alt="신규 일자리" />
             </Box>
           </Link>
-          <Link underline="none" href="/">
+          <Link underline="none" href="search?title=">
             <Box sx={{ border: "1px solid #d5d3d3", width: "300px" }}>
-              <Image src={customjob} alt="맞춤 일자리" />
+              <Image src={newjob} alt="맞춤 일자리" />
             </Box>
           </Link>
         </Box>

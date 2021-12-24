@@ -20,3 +20,4 @@ export const findBizReviews = async (bizId: any, pageNo: number) => {
   );
   return response.data;
 };
+

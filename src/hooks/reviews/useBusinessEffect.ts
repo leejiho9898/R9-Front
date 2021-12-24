@@ -18,13 +18,7 @@ export default function useBusinessEffect() {
     getData();
   }, []);
 
-  const [search, onChangeSearch] = useInput("");
 
-  const onSearchReview = async () => {
-    try {
-      /** 추후에 controller 추가되면 추가 */
-    } catch (e) {}
-  };
 
-  return { businesses, setBusinesses, onSearchReview };
+  return { businesses, setBusinesses };
 }

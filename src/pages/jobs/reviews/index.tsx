@@ -6,14 +6,16 @@ import { BasicBox } from "~/styles/Boxes";
 
 const ReviewPage = () => {
   return (
-    <BasicBox>
-      <Typography align="center" variant="h4" component="div">
-        후기
-      </Typography>
+    <>
+      <BasicBox>
+        <Typography align="center" variant="h4" component="div">
+          후기
+        </Typography>
 
-      <MiniSearch />
-      <ReviewList />
-    </BasicBox>
+        <MiniSearch />
+        <ReviewList />
+      </BasicBox>
+    </>
   );
 };
 

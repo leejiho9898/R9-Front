@@ -15,7 +15,6 @@ const DynamicComponentWithNoSSR = dynamic(
 
 const Detail: NextPage = () => {
   const router = useRouter();
-
   const { job } = useJobDetailEffect();
 
   return (
@@ -27,7 +26,7 @@ const Detail: NextPage = () => {
 
         <Button
           fullWidth
-          onClick={() => router.push("/jobapply")}
+          onClick={() => router.push(`/apply/${job?.id}`)}
           variant="contained"
           color="secondary"
         >

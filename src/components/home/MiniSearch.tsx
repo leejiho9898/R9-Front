@@ -8,6 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { styled } from "@mui/system";
+import useBizSearchForm from "~/hooks/reviews/useBizSearchForm";
 
 const SearchWrapper = styled("div")({
   display: "flex",
@@ -18,6 +19,7 @@ const SearchWrapper = styled("div")({
 });
 
 const MiniSearch = () => {
+  const { search, onChangeSearch, onSearchReview } = useBizSearchForm();
   return (
     <SearchWrapper>
       {/* 검색창 */}
@@ -29,8 +31,14 @@ const MiniSearch = () => {
               size="small"
               focused
               placeholder="후기를 보고 싶은 일자리를 검색해주세요"
+              value={search}
+              onChange={onChangeSearch}
             />
-            <Button variant="contained" sx={{ width: "3rem" }}>
+            <Button
+              variant="contained"
+              sx={{ width: "3rem" }}
+              onClick={onSearchReview}
+            >
               검색
             </Button>
           </Stack>

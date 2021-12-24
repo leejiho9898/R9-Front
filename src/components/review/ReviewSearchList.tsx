@@ -1,18 +1,13 @@
 import React from "react";
-import {
-  Link,
-  Pagination,
-  Paper,
-  Rating,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Link, Rating, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import useBusinessEffect from "~/hooks/reviews/useBusinessEffect";
+import useBizSearchEffect from "~/hooks/reviews/useBizSearchEffect";
+import { useRouter } from "next/router";
 
 const ReviewList = () => {
-  const { businesses } = useBusinessEffect();
-  console.log(businesses);
+  const router = useRouter();
+  const { bizname } = router.query;
+  const { businesses } = useBizSearchEffect(bizname);
   return (
     <>
       <Stack spacing={2} py={4}>

@@ -19,6 +19,13 @@ export const getBusinesses = async () => {
   return result;
 };
 
+export const getSearchBusinesses = async (bizname:string) => {
+  const result = await client
+    .get<User[]>(`users/search?bizname=${bizname}`)
+    .then((res) => res.data);
+  return result;
+};
+
 export const getUserMe = async () => {
   const result = await client.get<User>("users/me").then((res) => res.data);
   return result;

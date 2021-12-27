@@ -13,6 +13,8 @@ export const useSignUpForm = () =>
           .mixed<Role>()
           .oneOf(Object.values(Role), "유형이 일치하지 않습니다.")
           .required("사용자 유형을 선택해주세요!"),
+        bizName: yup.string(),
+        bizNumber: yup.string(),
         name: yup
           .string()
           .max(10, "이름은 최대 10자 이하여야합니다.")
@@ -36,13 +38,18 @@ export const useSignUpForm = () =>
           .mixed<Gender>()
           .oneOf(Object.values(Gender), "유형이 일치하지 않습니다.")
           .required("성별을 선택해주세요!"),
-        dateOfBirth: yup.date().required(),
+        dateOfBirth: yup.date().required("생년월일을 입력해주세요!"),
         address: yup.object().shape({
           postalCode: yup.string().required("주소를 입력해주세요!"),
           state: yup.string().required("주소를 입력해주세요!"),
           city: yup.string().required("주소를 입력해주세요!"),
           roadAddress: yup.string().required("주소를 입력해주세요!"),
         }),
+        useHashtags: yup.array().of(
+          yup.object().shape({
+            id: yup.number(),
+          })
+        ),
       })
     ),
   });

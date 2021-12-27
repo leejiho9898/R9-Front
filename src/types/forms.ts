@@ -14,4 +14,7 @@ export interface SignUpForm {
   gender: Gender;
   dateOfBirth: Date;
   address: Omit<Address, "id">;
+  bizName: string;
+  bizNumber: string;
+  useHashtags: Array<{ id: number }>;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import {
@@ -14,6 +14,7 @@ import {
   Box,
   Modal,
   FormHelperText,
+  Chip,
 } from "@mui/material";
 import { MobileDatePicker, LoadingButton } from "@mui/lab";
 import DaumPostcode from "react-daum-postcode";
@@ -23,17 +24,26 @@ import { useToggle } from "~/hooks/useToggle";
 import { usePostUserMutation } from "~/redux/services/api";
 import { Gender, Role } from "~/types/user";
 import { useSignUpForm } from "~/hooks/forms/useSignUpForm";
+import HashTagSignin from "~/components/common/HashTagSignin";
+import { Hashtags } from "~/types/hashtags";
 
 const SignUpPage: NextPage = () => {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const [isModal, toggleModal] = useToggle();
-
+  const [isHashModal, onToggleHashModal] = useToggle();
+  const [hashTag, setHashTag] = useState<Hashtags[]>([]);
+  const [isBusiness, setIsBusiness] = useState<boolean>(false);
   const { handleSubmit, control, setValue } = useSignUpForm();
-
   const [postUserMutation, { isLoading }] = usePostUserMutation();
 
+  useEffect(() => {
+    setValue("useHashtags", hashTag);
+    console.log("바뀜")
+  }, [hashTag]);
+
   const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
     if (isLoading) {
       return;
     }
@@ -93,7 +103,14 @@ const SignUpPage: NextPage = () => {
                     value={value || ""}
                     label="사용자 유형"
                     error={!!error}
-                    onChange={onChange}
+                    onChange={(e) => {
+                      onChange(e);
+                      if (e.target.value === Role.BUSINESS) {
+                        setIsBusiness(true);
+                      } else {
+                        setIsBusiness(false);
+                      }
+                    }}
                   >
                     <MenuItem value={Role.USER}>일반 사용자</MenuItem>
                     <MenuItem value={Role.BUSINESS}>기업 사용자</MenuItem>
@@ -102,6 +119,48 @@ const SignUpPage: NextPage = () => {
                 </FormControl>
               )}
             />
+            {isBusiness && (
+              <>
+                <Controller
+                  control={control}
+                  name="bizName"
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <TextField
+                      type="text"
+                      label="사업명 (법인명)"
+                      fullWidth
+                      size="small"
+                      value={value || ""}
+                      error={!!error}
+                      helperText={error?.message}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+                <Controller
+                  control={control}
+                  name="bizNumber"
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <TextField
+                      type="text"
+                      label="사업자 등록번호"
+                      fullWidth
+                      size="small"
+                      value={value || ""}
+                      error={!!error}
+                      helperText={error?.message}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </>
+            )}
             <Controller
               control={control}
               name="email"
@@ -273,8 +332,37 @@ const SignUpPage: NextPage = () => {
                 />
               )}
             />
+            <Controller
+              control={control}
+              name="useHashtags"
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <>
+                  <Box
+                    sx={{
+                      textAlign: "center",
+                      marginTop: 1,
+                      display: "flex",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    {hashTag.map((tag) => (
+                      <Chip key={tag.id} label={tag.name} sx={{ margin: 1 }} />
+                    ))}
+                  </Box>
+                </>
+              )}
+            />
+            <Button
+              variant="outlined"
+              onClick={onToggleHashModal}
+              sx={{ minWidth: "30%" }}
+            >
+              핵심 키워드 입력 (선택)
+            </Button>
           </Stack>
-
           <LoadingButton
             type="submit"
             variant="contained"
@@ -308,6 +396,11 @@ const SignUpPage: NextPage = () => {
           />
         </Box>
       </Modal>
+      <HashTagSignin
+        isModal={isHashModal}
+        onToggleModal={onToggleHashModal}
+        setHashTag={setHashTag}
+      />
     </>
   );
 };

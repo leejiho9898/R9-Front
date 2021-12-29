@@ -24,6 +24,15 @@ export const findJobsMeAPI = async () => {
   return resposne.data;
 };
 
+/** 내 맞춤 공고 리스트 호출 */
+export const findCostomJobsAPI = async (pageNo: number) => {
+  const response = await client.get(
+    `${url.JOBS}/custom?pageNo=${pageNo}&pageSize=10`
+  );
+  return response.data;
+};
+
+
 /** 특정 ID 가진 공고 호출 */
 export const findJobByIdAPI = async (id: any) => {
   const resposne = await client.get(`${url.JOBS}/${id}`);

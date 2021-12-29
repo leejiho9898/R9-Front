@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import {
   Box,
   Button,
+  Chip,
   FormControl,
   FormHelperText,
   InputLabel,
   MenuItem,
   Modal,
-  Paper,
   Select,
   Stack,
   TextField,
@@ -19,9 +19,8 @@ import { useSnackbar } from "notistack";
 import { Controller } from "react-hook-form";
 import DaumPostcode from "react-daum-postcode";
 import { useToggle } from "~/hooks/useToggle";
-import { wrapper } from "~/redux/store";
 import { useEditProfileForm } from "~/hooks/forms/useEditProfileForm";
-import { Gender, Role, User } from "~/types/user";
+import { Gender, Role } from "~/types/user";
 import {
   usePatchUserMeMutation,
   usePostUploadMutation,
@@ -30,6 +29,9 @@ import { selectAuth } from "~/redux/slices/auth-slice";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { BasicBox } from "~/styles/Boxes";
+import HashTagSignin from "~/components/common/HashTagSignin";
+import { Hashtags } from "~/types/hashtags";
+import { useDidMountEffect } from "~/hooks/common/useDidMountEffect";
 
 const MyInfoPage: NextPage = () => {
   const auth = useSelector(selectAuth);
@@ -37,6 +39,8 @@ const MyInfoPage: NextPage = () => {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const [isModal, toggleModal] = useToggle();
+  const [isHashModal, onToggleHashModal] = useToggle();
+  const [hashTag, setHashTag] = useState<Hashtags[]>([]);
   const { handleSubmit, control, setValue, register } = useEditProfileForm({
     defaultValues: {
       role: user.role,
@@ -44,6 +48,7 @@ const MyInfoPage: NextPage = () => {
       email: user.email,
       gender: user.gender,
       dateOfBirth: user.dateOfBirth,
+      useHashtags: user.useHashtags,
       address: {
         postalCode: user.address.postalCode,
         state: user.address.state,
@@ -52,16 +57,27 @@ const MyInfoPage: NextPage = () => {
       },
     },
   });
+
+  // defaultValues 설정
+  useEffect(() => {
+    if (user.useHashtags) {
+      setHashTag(user.useHashtags);
+    }
+  }, []);
+
+  useDidMountEffect(() => {
+    setValue("useHashtags", hashTag);
+    console.log("바뀜");
+  }, hashTag);
   const [patchUserMeMutation, { isLoading }] = usePatchUserMeMutation();
   const [postUploadMutatuin] = usePostUploadMutation();
 
   const onSubmit = handleSubmit(async (data) => {
-    router.push("/");
+    console.log(data);
     if (isLoading) {
       return;
     }
-
-    if (data.profileImage instanceof FileList) {
+    if (data.profileImage) {
       const formBody = new FormData();
       formBody.append("file", data.profileImage[0]);
       await postUploadMutatuin(formBody)
@@ -70,7 +86,6 @@ const MyInfoPage: NextPage = () => {
           data.profileImage = res.Location;
         });
     }
-
     patchUserMeMutation({ data })
       .unwrap()
       .then(() => {
@@ -86,6 +101,7 @@ const MyInfoPage: NextPage = () => {
           }
         );
       });
+    router.push("/");
   });
 
   return (
@@ -186,13 +202,33 @@ const MyInfoPage: NextPage = () => {
                 type="file"
               />
             </Stack>
+            <Box
+              sx={{
+                textAlign: "center",
+                marginTop: 1,
+                display: "flex",
+                flexWrap: "wrap",
+              }}
+            >
+              {hashTag.map((tag) => (
+                <Chip key={tag.id} label={tag.name} sx={{ margin: 1 }} />
+              ))}
+            </Box>
+            <Box display="flex" justifyContent="center">
+              <Button
+                variant="outlined"
+                onClick={onToggleHashModal}
+                sx={{ minWidth: "30%" }}
+              >
+                핵심 키워드 입력 (선택)
+              </Button>
+            </Box>
             <Box display="flex" justifyContent="flex-end">
               <Button type="submit" variant="contained">
                 수정
               </Button>
             </Box>
           </Stack>
-
           <Stack spacing={2} component="form">
             <Typography variant="h6">개인 정보</Typography>
             <Controller
@@ -337,6 +373,11 @@ const MyInfoPage: NextPage = () => {
           />
         </Box>
       </Modal>
+      <HashTagSignin
+        isModal={isHashModal}
+        onToggleModal={onToggleHashModal}
+        setHashTag={setHashTag}
+      />
     </>
   );
 };

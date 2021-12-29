@@ -42,6 +42,11 @@ export const useEditProfileForm = (props: UseFormProps) =>
           city: yup.string().required("주소를 입력해주세요!"),
           roadAddress: yup.string().required("주소를 입력해주세요!"),
         }),
+        useHashtags: yup.array().of(
+          yup.object().shape({
+            id: yup.number(),
+          })
+        ),
       })
     ),
     ...props,

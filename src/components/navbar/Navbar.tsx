@@ -50,8 +50,7 @@ export const basicNavItems: NavItem[] = [
 ];
 export const userNavItems: NavItem[] = [
   { name: "지원 내역", href: "/apply/history", icon: <PersonAddAlt /> },
-  { name: "내정보 수정", href: "/job/post", icon: <Mode /> },
-  //추후 추가 바람.
+  { name: "내정보 수정", href: "/myinfo", icon: <Mode /> },
 ];
 
 export const businessNavItem: NavItem[] = [
@@ -61,7 +60,7 @@ export const businessNavItem: NavItem[] = [
     icon: <FormatListBulleted />,
   },
   { name: "내정보 수정", href: "/myinfo", icon: <PersonAddAlt /> },
-  { name: "공고 작성", href: "/myinfo", icon: <PersonAddAlt /> },
+  { name: "공고 작성", href: "/jobs/post", icon: <PersonAddAlt /> },
 ];
 export const Navbar = () => {
   const router = useRouter();

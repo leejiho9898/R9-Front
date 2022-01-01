@@ -48,12 +48,24 @@ const MyInfoPage: NextPage = () => {
       email: user.email,
       gender: user.gender,
       dateOfBirth: user.dateOfBirth,
-      useHashtags: user.useHashtags,
+      useHashtags: user.useHashtags ? user.useHashtags : [],
       address: {
-        postalCode: user.address.postalCode,
-        state: user.address.state,
-        city: user.address.city,
-        roadAddress: user.address.roadAddress,
+        postalCode: user.address
+          ? user.address.postalCode
+            ? user.address.postalCode
+            : ""
+          : "",
+        state: user.address
+          ? user.address.state
+            ? user.address.state
+            : ""
+          : "",
+        city: user.address ? (user.address.city ? user.address.city : "") : "",
+        roadAddress: user.address
+          ? user.address.roadAddress
+            ? user.address.roadAddress
+            : ""
+          : "",
       },
     },
   });

@@ -4,13 +4,14 @@ import { Job } from "~/types/job";
 
 export function useJobMeEffect() {
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [render, setRender] = useState<boolean>(false);
   useEffect(() => {
     const getData = async () => {
       const jobs = await findJobsMeAPI();
       setJobs(jobs);
     };
     getData();
-  }, [setJobs]);
+  }, [setJobs, render, setRender]);
 
-  return { jobs };
+  return { jobs, render, setRender };
 }

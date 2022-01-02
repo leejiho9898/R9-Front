@@ -3,14 +3,14 @@ import React from "react";
 import { switchJobStatus } from "~/libs/api/job";
 
 export const useJobHandle = () => {
-  const router = useRouter();
-
-  const onSwichJobStatus = async (id: number) => {
-    console.log("asd");
+  const onSwichJobStatus = async (
+    id: number,
+    setRender: React.Dispatch<React.SetStateAction<boolean>>,
+    render: boolean
+  ) => {
     try {
-      console.log("asd");
       await switchJobStatus(id);
-      router.reload();
+      setRender(!render);
     } catch (error) {
       alert("오류가 발생했습니다.");
     }

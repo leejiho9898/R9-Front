@@ -10,7 +10,7 @@ export interface ApplyerHistoryListItem {
   name: string;
 }
 const JobHistoryList = () => {
-  const { jobs } = useJobMeEffect();
+  const { jobs, setRender, render } = useJobMeEffect();
   const { onSwichJobStatus } = useJobHandle();
   console.log(jobs);
   return (
@@ -68,14 +68,14 @@ const JobHistoryList = () => {
                 {job.status === JobStatus.ACTIVATE ? (
                   <Button
                     variant="contained"
-                    onClick={() => onSwichJobStatus(job.id)}
+                    onClick={() => onSwichJobStatus(job.id, setRender, render)}
                   >
                     모집 완료
                   </Button>
                 ) : (
                   <Button
                     variant="text"
-                    onClick={() => onSwichJobStatus(job.id)}
+                    onClick={() => onSwichJobStatus(job.id, setRender, render)}
                   >
                     다시 모집
                   </Button>

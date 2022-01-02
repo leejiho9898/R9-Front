@@ -32,7 +32,6 @@ export const findCostomJobsAPI = async (pageNo: number) => {
   return response.data;
 };
 
-
 /** 특정 ID 가진 공고 호출 */
 export const findJobByIdAPI = async (id: any) => {
   const resposne = await client.get(`${url.JOBS}/${id}`);
@@ -51,7 +50,8 @@ export const updateJobAPI = async (id: number) => {
 
 /** 공고 상태 업데이트 */
 export const switchJobStatus = async (id: number) => {
-  await client.patch(`${url.JOBS}/status/${id}`);
+  const response = await client.patch(`${url.JOBS}/status/${id}`);
+  return response.data;
 };
 
 /** 공고 검색 */

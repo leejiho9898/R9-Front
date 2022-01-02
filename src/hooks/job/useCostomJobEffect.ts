@@ -22,7 +22,7 @@ export function useCostomJobEffect() {
         setTotalCount(response.totalCount);
         setTotalPage(response.totalPage);
       } catch (error) {
-        console.log(error, "공고 목록을 불러오는데 실패했습니다.");
+        console.log(error, "맞춤 공고를 불러오는데 실패했습니다.");
       }
     };
     getData();

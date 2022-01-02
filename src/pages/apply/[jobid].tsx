@@ -35,6 +35,7 @@ const ProfileImage = styled(IconButton)({
 });
 
 const JobApplyPage: NextPage = () => {
+  
   const router = useRouter();
   const { jobid } = router.query;
   const auth = useSelector(selectAuth);
@@ -45,7 +46,6 @@ const JobApplyPage: NextPage = () => {
     <ContainerBox>
       <Card sx={{ p: 4 }}>
         <Box>
-          {/* 지원자 정보 */}
           <Box>
             <ProfileImage>
               <Avatar
@@ -58,8 +58,10 @@ const JobApplyPage: NextPage = () => {
               {user?.name}
             </Typography>
           </Box>
-          <Box p={2} sx={{ width: "80%", textAlign: "left" }}>
-            <Typography variant="body2">주소 : {user?.address}</Typography>
+          <Box p={2} sx={{ textAlign: "left" }}>
+            <Typography variant="body2">
+              주소 : {user?.address?.roadAddress}
+            </Typography>
             <Typography variant="body2">
               생년월일 : {user?.dateOfBirth}
             </Typography>

@@ -52,7 +52,7 @@ const HomePage: NextPage = () => {
               <Image src={newjob} alt="신규 일자리" />
             </Box>
           </Link>
-          <Link underline="none" href="costomjob">
+          <Link underline="none" href="/user/costomjob">
             <Box sx={{ border: "1px solid #d5d3d3", width: "300px" }}>
               <Image src={customjob} alt="맞춤 일자리" />
             </Box>

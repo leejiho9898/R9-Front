@@ -29,7 +29,7 @@ const ReviewDetail = ({ id }: ReviewDetailProps) => {
         <Button
           variant="contained"
           sx={{ float: "right", marginTop: 3 }}
-          onClick={() => router.push(`/jobs/reviews/post/${id}`)}
+          onClick={() => router.push(`/post/reviews/${id}`)}
         >
           후기 작성
         </Button>

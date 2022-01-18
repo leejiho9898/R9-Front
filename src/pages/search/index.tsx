@@ -7,6 +7,7 @@ import { BasicDarkBox } from "~/styles/Boxes";
 import Search from "~/components/home/Search";
 import { useRouter } from "next/router";
 import { useJobSearchEffect } from "~/hooks/job/useJobSearchEffect";
+import AdvancedSearch from "~/components/home/AdvancedSearch";
 
 const SearchPage: NextPage = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const SearchPage: NextPage = () => {
         일자리 검색
       </Typography>
       <Search />
+      <AdvancedSearch tit={title} />
       <JobCard data={jobs} />
     </BasicDarkBox>
   );

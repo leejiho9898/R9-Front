@@ -40,3 +40,14 @@ export interface IApplyState {
   job: IJobState;
   moreDetail: string;
 }
+
+export interface ISearchState {
+  title: string;
+  adress: string;
+  payment: PayMentsMethod;
+  workType: string;
+  period: string;
+  personnel: string;
+  age: string;
+  hashtagIds: string;
+}

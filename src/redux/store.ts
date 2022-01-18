@@ -4,6 +4,7 @@ import { api } from "~/redux/services/api";
 import { authSlice } from "~/redux/slices/auth-slice";
 import { jobSlice } from "~/redux/slices/job-slice";
 import { reviewSlice } from "~/redux/slices/review-slice";
+import { searchSlice } from "./slices/search-slice";
 
 export const makeStore = () =>
   configureStore({
@@ -11,7 +12,8 @@ export const makeStore = () =>
       [api.reducerPath]: api.reducer,
       auth: authSlice.reducer,
       job: jobSlice.reducer, // jobReducer
-      review: reviewSlice.reducer, // jobReducer
+      review: reviewSlice.reducer,
+      search: searchSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({ serializableCheck: false }).concat(api.middleware),

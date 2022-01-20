@@ -9,8 +9,6 @@ const initialState: ISearchState = {
   payment: PayMentsMethod.PERHOUR,
   workType: "",
   period: "",
-  personnel: "",
-  age: "",
   hashtagIds: "",
 };
 

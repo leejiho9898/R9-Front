@@ -47,7 +47,5 @@ export interface ISearchState {
   payment: PayMentsMethod;
   workType: string;
   period: string;
-  personnel: string;
-  age: string;
   hashtagIds: string;
 }

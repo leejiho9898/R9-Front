@@ -29,13 +29,12 @@ const HashTagSearch = ({ isModal, onToggleModal }: ModalProps) => {
 
   const onSubmit = () => {
     let result = selectedHashtag.map(({ id }) => id);
-    console.log(result);
-    // const body = {
-    //   key: "hashtagIds",
-    //   value: selectedHashtag,
-    // };
-    // dispatch(setSearch(body));
-    // onToggleModal();
+    const body = {
+      key: "hashtagIds",
+      value: result,
+    };
+    dispatch(setSearch(body));
+    onToggleModal();
   };
 
   return (

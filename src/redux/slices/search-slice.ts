@@ -6,7 +6,7 @@ import { AppState } from "../store";
 const initialState: ISearchState = {
   title: "",
   adress: "",
-  payment: PayMentsMethod.PERHOUR,
+  payment: PayMentsMethod.NULL,
   workType: "",
   period: "",
   hashtagIds: "",

@@ -19,9 +19,7 @@ interface ReviewDetailProps {
 
 const ReviewDetail = ({ id }: ReviewDetailProps) => {
   const router = useRouter();
-
   const { reviews, totalPage, pageNo, setPageNo } = useReviewEffect(id);
-  console.log(pageNo);
   return (
     <>
       <Typography align="center" variant="h4" sx={{ marginBottom: 3 }}>
@@ -36,7 +34,7 @@ const ReviewDetail = ({ id }: ReviewDetailProps) => {
       </Typography>
 
       {reviews &&
-        reviews.map((review: Review, index) => (
+        reviews.map((review: Review, index: number) => (
           <Paper sx={{ paddingLeft: 3, paddingRight: 3 }}>
             <Stack
               spacing={2}

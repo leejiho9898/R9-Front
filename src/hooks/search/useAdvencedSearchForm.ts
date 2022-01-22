@@ -1,11 +1,10 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searchJobListAPI } from "~/libs/api/job";
 import { selectSearch, setSearch } from "~/redux/slices/search-slice";
-import { ISearchState } from "~/types/stores";
 
 export const useAdvencedSearchForm = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const search = useSelector(selectSearch);
   const onChangeSearch = (
@@ -21,7 +20,11 @@ export const useAdvencedSearchForm = () => {
   };
 
   const onSearch = async () => {
-    await searchJobListAPI(1, 1, search);
+    console.log(search);
+    const { adress, hashtagIds, payment, period, title, workType } = search;
+    router.push(
+      `/search?pageNo=1&pageSize=10title=${title}&adress=${adress}&payment=${payment}&workType=${workType}&hashtagIds=${hashtagIds}&period=${period}`
+    );
   };
   return { search, onChangeSearch, onSearch };
 };

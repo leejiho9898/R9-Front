@@ -1,5 +1,6 @@
 import axios from "axios";
-import { IJobState } from "src/types/stores";
+import { ParsedUrlQuery } from "querystring";
+import { IJobState, ISearchState } from "src/types/stores";
 import { client } from ".";
 
 const url = {
@@ -55,7 +56,14 @@ export const switchJobStatus = async (id: number) => {
 };
 
 /** 공고 검색 */
-export const searchJobAPI = async (title: string) => {
-  const resposne = await client.get(`${url.JOBS}/search?title=${title}`);
+export const searchJobAPI = async (
+  pageNo: number,
+  pageSize: number,
+  query: ParsedUrlQuery
+) => {
+  const { adress, hashtagIds, payment, period, title, workType } = query;
+  const resposne = await client.get(
+    `${url.JOBS}/search?pageNo=${pageNo}&pageSize=${pageSize}&title=${title}&adress=${adress}&payment=${payment}&workType=${workType}&hashtagIds=${hashtagIds}&period=${period}`
+  );
   return resposne.data;
 };

@@ -2,6 +2,7 @@ export enum PayMentsMethod {
   PERHOUR = "PERHOUR",
   PERDAY = "PERDAY",
   PERMONTH = "PERMONTH",
+  NULL = "",
 }
 
 export enum JobStatus {

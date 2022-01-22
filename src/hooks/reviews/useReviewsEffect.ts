@@ -1,14 +1,17 @@
 import { Dispatch, useEffect, useState } from "react";
 import { findBizReviews } from "~/libs/api/reviews";
+import usePagnation from "../common/usePagnation";
 
 export default function useReviewEffect(bizId: any) {
-  const [reviews, setReviews] = useState<any[]>([]);
-  /** 총 아이템 수 */
-  const [totalCount, setTotalCount] = useState(0);
-  /** 패아자 수 */
-  const [totalPage, setTotalPage] = useState(0);
-  /** 현재 페이지 */
-  const [pageNo, setPageNo] = useState(1);
+  const {
+    totalCount,
+    setTotalCount,
+    setTotalPage,
+    totalPage,
+    pageNo,
+    setPageNo,
+  } = usePagnation();
+  const [reviews, setReviews] = useState<any>([]);
 
   useEffect(() => {
     const getData = async () => {

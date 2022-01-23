@@ -16,14 +16,12 @@ export const useAdvencedSearchForm = () => {
       value,
     };
     dispatch(setSearch(body));
-    console.log(search);
   };
 
   const onSearch = async () => {
-    console.log(search);
     const { adress, hashtagIds, payment, period, title, workType } = search;
     router.push(
-      `/search?pageNo=1&pageSize=10title=${title}&adress=${adress}&payment=${payment}&workType=${workType}&hashtagIds=${hashtagIds}&period=${period}`
+      `/search?pageNo=1&pageSize=10&title=${title}&adress=${adress}&payment=${payment}&workType=${workType}&hashtagIds=${hashtagIds}&period=${period}`
     );
   };
   return { search, onChangeSearch, onSearch };

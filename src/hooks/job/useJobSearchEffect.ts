@@ -13,12 +13,12 @@ export function useJobSearchEffect(query: ParsedUrlQuery) {
     pageNo,
     setPageNo,
   } = usePagnation();
+
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await searchJobAPI(1, 10, query);
-        console.log(jobs);
+        const response = await searchJobAPI(pageNo, 10, query);
         setJobs(response.items);
         setTotalCount(response.totalCount);
         setTotalPage(response.totalPage);
@@ -27,7 +27,7 @@ export function useJobSearchEffect(query: ParsedUrlQuery) {
       }
     };
     getData();
-  }, [pageNo]);
+  }, [pageNo, query]);
 
   return { jobs, totalCount, totalPage, pageNo, setPageNo };
 }

@@ -22,8 +22,9 @@ export const searchSlice = createSlice({
     ) => {
       state[key] = value;
     },
+    setSearchEmpty: () => initialState,
   },
 });
 
-export const { setSearch } = searchSlice.actions;
+export const { setSearch, setSearchEmpty } = searchSlice.actions;
 export const selectSearch = (state: AppState) => state.search;

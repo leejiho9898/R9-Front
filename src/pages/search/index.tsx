@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NextPage } from "next";
 import { Button, Pagination, Typography } from "@mui/material";
 import JobCard from "~/components/home/JobCard";
@@ -6,12 +6,19 @@ import { BasicDarkBox } from "~/styles/Boxes";
 import { useRouter } from "next/router";
 import { useJobSearchEffect } from "~/hooks/job/useJobSearchEffect";
 import AdvancedSearch from "~/components/home/AdvancedSearch";
+import { useDispatch } from "react-redux";
+import { setSearchEmpty } from "~/redux/slices/search-slice";
+import useResetReduxState from "~/hooks/common/useResetReduxState";
 
 const SearchPage: NextPage = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { jobs, totalPage, pageNo, setPageNo } = useJobSearchEffect(
     router.query
   );
+
+  useResetReduxState(setSearchEmpty());
+
   return (
     <>
       <BasicDarkBox>

@@ -6,6 +6,7 @@ import { BasicBox } from "~/styles/Boxes";
 const PostPage: NextPage = () => {
   return (
     <>
+    
       <BasicBox>
         <JobPostEditor isEdit={false} />
       </BasicBox>

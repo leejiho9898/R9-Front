@@ -37,8 +37,9 @@ export const jobSlice = createSlice({
     ) => {
       state[key] = value;
     },
+    setJobEmpty: () => initialState,
   },
 });
 
-export const { setJob, setJobNumber } = jobSlice.actions;
+export const { setJob, setJobNumber, setJobEmpty } = jobSlice.actions;
 export const selectJob = (state: AppState) => state.job;

@@ -17,11 +17,12 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
-import { selectJob } from "~/redux/slices/job-slice";
+import { selectJob, setJobEmpty } from "~/redux/slices/job-slice";
 import { useToggle } from "~/hooks/useToggle";
 import useDaumAdress from "~/hooks/kakao/useDaumAdress";
 import useJobForm from "~/hooks/job/useJobForm";
 import HashTagClick from "../common/HashTagClick";
+import useResetReduxState from "~/hooks/common/useResetReduxState";
 
 interface EditorProps {
   isEdit: boolean;
@@ -41,7 +42,7 @@ const JobPostEditor = ({ isEdit }: EditorProps) => {
   } = useJobForm();
   const { title, workType, payment, personnel, age, gender, wage, sectors } =
     job;
-
+  useResetReduxState(setJobEmpty());
   const onCompletePostAndToggleModal = (data: Address) => {
     onCompletePost(data);
     onToggleDaum();

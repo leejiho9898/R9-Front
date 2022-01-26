@@ -44,7 +44,6 @@ const ApplyerList = () => {
           key={applyer.id}
         >
           <Stack direction="row" spacing={2} ml={0.5}>
-            {/* 지원자 정보 */}
             <Box sx={{ textAlign: "center", marginRight: 1 }}>
               <ProfileImage>
                 <Avatar
@@ -80,7 +79,13 @@ const ApplyerList = () => {
                 </Stack>
                 <Stack direction="row" spacing={1}>
                   <TypoQue>주소 :</TypoQue>
-                  <TypoAns>{applyer.user.address}</TypoAns>
+                  <TypoAns>
+                    {applyer.user
+                      ? applyer.user.address
+                        ? applyer.user.address.roadAddress
+                        : ""
+                      : ""}
+                  </TypoAns>
                 </Stack>
                 <Stack direction="row" spacing={1}>
                   <TypoQue>생년월일 :</TypoQue>

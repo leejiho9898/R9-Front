@@ -49,7 +49,7 @@ const JobApplyPage2: NextPage = () => {
           </Typography>
         </Box>
         <Stack spacing={1}>
-          <Typography variant="body1">주소 : {apply?.user.address}</Typography>
+          <Typography variant="body1">주소 : {apply?.user.address.roadAddress}</Typography>
           <Typography variant="body1">
             생년월일 :{apply?.user.dateOfBirth}
           </Typography>

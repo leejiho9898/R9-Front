@@ -1,10 +1,9 @@
 import React from "react";
 import { NextPage } from "next";
-import { Box, styled } from "@mui/system";
-import { Typography, TextField, Stack, Button, Link } from "@mui/material";
+import { Box } from "@mui/system";
+import { Typography, Link } from "@mui/material";
 import { BasicDarkBox } from "~/styles/Boxes";
 import Image from "next/image";
-import { useSearchForm } from "~/hooks/search/useSearchForm";
 import { customjob, newjob } from "~/assets/img";
 import Search from "~/components/home/Search";
 
@@ -47,7 +46,10 @@ const HomePage: NextPage = () => {
             flexWrap: "wrap",
           }}
         >
-          <Link underline="none" href="search?title=">
+          <Link
+            underline="none"
+            href="/search?pageNo=1&pageSize=10&title=&adress=&payment=&workType=&hashtagIds=&period="
+          >
             <Box sx={{ border: "1px solid #d5d3d3", width: "300px" }}>
               <Image src={newjob} alt="신규 일자리" />
             </Box>

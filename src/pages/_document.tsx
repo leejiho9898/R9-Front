@@ -8,19 +8,24 @@ import Document, {
 } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import { createEmotionCache } from "~/libs/create-emotion-cache";
+import { ServerStyleSheets } from "@mui/styles";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
+    const sheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     const cache = createEmotionCache();
     const { extractCriticalToChunks } = createEmotionServer(cache);
 
     ctx.renderPage = () =>
+      // originalRenderPage({
+      //   // eslint-disable-next-line react/display-name
+      //   enhanceApp: (App: any) => (props) =>
+      //     <App emotionCache={cache} {...props} />,
+      // });
       originalRenderPage({
-        // eslint-disable-next-line react/display-name
-        enhanceApp: (App: any) => (props) =>
-          <App emotionCache={cache} {...props} />,
+        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
       });
 
     const initialProps = await Document.getInitialProps(ctx);

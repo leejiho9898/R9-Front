@@ -35,7 +35,7 @@ const ReviewDetail = ({ id }: ReviewDetailProps) => {
 
       {reviews &&
         reviews.map((review: Review, index: number) => (
-          <Paper sx={{ paddingLeft: 3, paddingRight: 3 }}>
+          <Paper sx={{ paddingLeft: 3, paddingRight: 3 }} key={index}>
             <Stack
               spacing={2}
               py={3}

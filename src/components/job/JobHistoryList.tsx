@@ -31,7 +31,7 @@ const JobHistoryList = () => {
             {/* 공고 정보 */}
             <Box sx={{ width: "100%" }}>
               <Typography gutterBottom variant="subtitle2" component="div">
-                <Link href={`/job/${job.id}`} underline="hover" color="inherit">
+                <Link href={`/jobs/${job.id}`} underline="hover" color="inherit">
                   제목 : {job.title}
                 </Link>
               </Typography>
